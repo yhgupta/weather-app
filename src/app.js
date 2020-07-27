@@ -51,22 +51,23 @@ app.get('/weather', (req, res) => {
     }
 
 
-    geocode(req.query.address, (error, {latitude,longitude,location}= {})=>{
+    geocode(req.query.address, (error, {latitude,longitude}= {})=>{
         if( error ){
             return res.send({
                 error:error
             })
         }
-        forecast( latitude, longitude, location, (error,{temperature,precip} = {}) =>{
+        forecast( latitude, longitude, (error,data) =>{
+            console.log("Error: " + error)
+            console.log("Data: " + data)
             if( error ){
                 return res.send({
                     error:error
                 })
             }
             res.send({
-                message:'It is currently ' + temperature + " degrees out. There is " + precip + "% chance of rain.",
+                message:data,
                 address:req.query.address,
-                location:location
             })
         })
     })

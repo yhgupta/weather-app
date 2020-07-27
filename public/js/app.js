@@ -18,7 +18,7 @@ weatherform.addEventListener('submit' , (e)=>{
                 messageTwo.textContent = ""
             }else{
                 messageOne.textContent = ""
-                messageTwo.textContent = data.location + "\n" + data.message
+                messageTwo.textContent = data.address + "\n" + data.message
             }
         })
     })
